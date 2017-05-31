@@ -1,9 +1,7 @@
 export class Pet{
 
-  constructor(_name, _age, _gender){
-    this.name = _name;
-    this.age  = _age;
-    this.gender = _gender;
-    
+  constructor(){
+    this.name = document.getElementById('name').value;
+    this.age  = document.getElementById('age').value;
   }
 }

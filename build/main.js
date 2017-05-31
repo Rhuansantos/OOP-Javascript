@@ -22,21 +22,22 @@ var Crud = exports.Crud = function (_Pet) {
   function Crud() {
     _classCallCheck(this, Crud);
 
-    return _possibleConstructorReturn(this, (Crud.__proto__ || Object.getPrototypeOf(Crud)).call(this));
-    // this.container = document.getElementById('main');
+    var _this = _possibleConstructorReturn(this, (Crud.__proto__ || Object.getPrototypeOf(Crud)).call(this));
 
-    // this.create();
+    _this.container = document.getElementById('main');
+    _this.create();
+    return _this;
   }
 
   _createClass(Crud, [{
     key: 'create',
     value: function create() {
 
-      console.log('from create');
-      var template = '\n        <h1>Ol\xE1</h1>\n      ';
+      console.log('from create', this.name);
+      var template = '\n        <h1>' + this.name + '</h1>\n        <h1>' + this.age + '</h1>\n        <hr />\n      ';
 
       // this.container.innerHtml(template);
-      this.container.insertAdjacentHTML('afterbegin', template);
+      this.container.insertAdjacentHTML('beforebegin', template);
     }
   }, {
     key: 'delete',
@@ -50,7 +51,7 @@ var Crud = exports.Crud = function (_Pet) {
 }(_petProfile.Pet);
 
 },{"./petProfile":2}],2:[function(require,module,exports){
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -58,12 +59,11 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Pet = exports.Pet = function Pet(_name, _age, _gender) {
+var Pet = exports.Pet = function Pet() {
   _classCallCheck(this, Pet);
 
-  this.name = _name;
-  this.age = _age;
-  this.gender = _gender;
+  this.name = document.getElementById('name').value;
+  this.age = document.getElementById('age').value;
 };
 
 },{}],3:[function(require,module,exports){
@@ -71,10 +71,17 @@ var Pet = exports.Pet = function Pet(_name, _age, _gender) {
 
 var _crud = require('./core/crud');
 
+// waiting for the document to be ready
 window.addEventListener("load", function () {
 
-  console.log('the page was load');
-  var page = new _crud.Crud('Rhuan', '22', '');
+  // form
+  var petForm = document.getElementById('insertPet');
+
+  petForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    var page = new _crud.Crud();
+  });
 });
 
 },{"./core/crud":1}]},{},[3]);
