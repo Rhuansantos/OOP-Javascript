@@ -5,29 +5,26 @@ export class PetCreate extends PetProfile{
 
   constructor(){
     super();
-    this.petArray = petArray;
     this.create();
-
-    console.log(this.shelter);
-
+    
   }
   create (){
     let petContainer = document.getElementById('petList');
     let shelterStatic = document.getElementById('shelter').value;
 
     // checking the array
-    for (let i = 0; i < this.petArray.length; i ++){
-      if(this.petArray[i].shelter === shelterStatic){
+    for (let i = 0; i < petArray.length; i ++){
+      if(petArray[i].shelter === shelterStatic){
           console.log('looks same');
       }else{  
       // if something looks diferent then change it for every single element
-      this.petArray.forEach( function(el, i) {
+      petArray.forEach( function(el, i) {
           petArray[i].shelter = shelterStatic;
         });
       }
     }
 
-    this.petArray.forEach( function(el, i) {
+    petArray.forEach( function(el, i) {
 
     let template = `
       <li data-key=${i}>

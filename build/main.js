@@ -26,10 +26,7 @@ var PetCreate = exports.PetCreate = function (_PetProfile) {
 
     var _this = _possibleConstructorReturn(this, (PetCreate.__proto__ || Object.getPrototypeOf(PetCreate)).call(this));
 
-    _this.petArray = petArray;
     _this.create();
-
-    console.log(_this.shelter);
 
     return _this;
   }
@@ -41,18 +38,18 @@ var PetCreate = exports.PetCreate = function (_PetProfile) {
       var shelterStatic = document.getElementById('shelter').value;
 
       // checking the array
-      for (var i = 0; i < this.petArray.length; i++) {
-        if (this.petArray[i].shelter === shelterStatic) {
+      for (var i = 0; i < petArray.length; i++) {
+        if (petArray[i].shelter === shelterStatic) {
           console.log('looks same');
         } else {
           // if something looks diferent then change it for every single element
-          this.petArray.forEach(function (el, i) {
+          petArray.forEach(function (el, i) {
             petArray[i].shelter = shelterStatic;
           });
         }
       }
 
-      this.petArray.forEach(function (el, i) {
+      petArray.forEach(function (el, i) {
 
         var template = '\n      <li data-key=' + i + '>\n           <h1>' + petArray[i].name + '</h1>\n           <h1>' + petArray[i].age + '</h1>\n           <h1>' + petArray[i].shelter + '</h1>\n          <hr />\n      </li>\n    ';
 

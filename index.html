@@ -8,15 +8,18 @@ Student: Rhuan Souza
 	<meta charset="UTF-8">
 	<title>Index</title>
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="scss/css/main.css">
 </head>
 <body>
 
-	<section id="listContainer">
-		<ul id="petList">
-		</ul>
-	</section>
+<header>
+	<h1>PetList</h1>
+</header>
 
-	<section>
+<div class="container">
+	<div class="row">
+
+	<section class="col-lg-4">
 		<form id="insertPet" action="">
 			<p>
 				<input id="name" type="text" placeholder="Pet Name">
@@ -25,14 +28,25 @@ Student: Rhuan Souza
 				<input id="age" type="text" placeholder="Pet Age">
 			</p>
 			<p>
-				<label>Static Method
-					<input id="shelter" type="text" value="Orlando-Fl">
-				</label>
+				<label>Static Method</label>
+				<input id="shelter" type="text" value="Orlando-Fl">
 			</p>
-			<button type="btnSubmit">Create</button>
+			<button class="btn btn-primary" type="btnSubmit">Create</button>
 		</form>
 	</section>
 
-	<script type="text/javascript" src="build/main.js"></script>
-</body>
+	<section class="col-lg-8" id="listContainer">
+		<ul id="petList">
+			<li></li>
+		</ul>
+	</section>
+
+
+	</div>
+</div>
+
+
+
+		<script type="text/javascript" src="build/main.js"></script>
+	</body>
 </html>

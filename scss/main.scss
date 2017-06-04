@@ -1,0 +1,31 @@
+header{
+	width: 100%;
+	header: 100px;
+	background: black;
+	margin-bottom: 50px;
+
+	h1{
+		text-align: center;
+		color: white;
+	}
+}
+
+#petList{
+	li{
+		list-style-type: none;
+	}
+}
+#insertPet{
+	p{
+		label{
+			display: block;
+		}
+	}
+
+	button, input{
+		width: 100%;
+	}
+	input{
+		padding: 10px;
+	}
+}

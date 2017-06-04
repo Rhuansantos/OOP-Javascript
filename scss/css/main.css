@@ -1,0 +1,20 @@
+header {
+  width: 100%;
+  header: 100px;
+  background: black;
+  margin-bottom: 50px; }
+  header h1 {
+    text-align: center;
+    color: white; }
+
+#petList li {
+  list-style-type: none; }
+
+#insertPet p label {
+  display: block; }
+#insertPet button, #insertPet input {
+  width: 100%; }
+#insertPet input {
+  padding: 10px; }
+
+/*# sourceMappingURL=main.css.map */
