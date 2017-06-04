@@ -4,7 +4,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PetCreate = undefined;
+exports.PetCreate = exports.petArray = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -16,17 +16,18 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var petArray = exports.petArray = [];
+
 var PetCreate = exports.PetCreate = function (_PetProfile) {
   _inherits(PetCreate, _PetProfile);
 
-  function PetCreate(_method) {
+  function PetCreate() {
     _classCallCheck(this, PetCreate);
 
     var _this = _possibleConstructorReturn(this, (PetCreate.__proto__ || Object.getPrototypeOf(PetCreate)).call(this));
 
-    _this.method = _method;
+    _this.petArray = petArray;
     _this.create();
-
     return _this;
   }
 
@@ -34,10 +35,25 @@ var PetCreate = exports.PetCreate = function (_PetProfile) {
     key: 'create',
     value: function create() {
 
-      // console.log(petList);
       var template = '\n        <h1>' + this.name + '</h1>\n        <h1>' + this.age + '</h1>\n         <h1>' + this.shelter + '</h1>\n        <hr />\n      ';
 
+      var shelterStatic = document.getElementById('shelter').value;
+
+      // checking the array
+      for (var i = 0; i < this.petArray.length; i++) {
+        if (this.petArray[i].shelter === shelterStatic) {
+          console.log('looks same');
+        } else {
+          // if something looks diferent then change it for every single element
+          this.petArray.forEach(function (el, i) {
+            petArray[i].shelter = shelterStatic;
+          });
+        }
+      }
+
       document.getElementById('main').insertAdjacentHTML('beforebegin', template);
+
+      console.log(petArray);
     }
   }]);
 
@@ -66,38 +82,16 @@ var PetProfile = exports.PetProfile = function PetProfile() {
 
 var _crud = require('./core/crud');
 
-var petArray = [];
-
-
 // waiting for the document to be ready
 window.addEventListener("load", function () {
 
-  var petForm = document.getElementById('insertPet');
-
-  // listen to the form
-  petForm.addEventListener("submit", function (e) {
-
-    var shelterStatic = document.getElementById('shelter').value;
-
-    e.preventDefault();
-    // creating a new instance
-    var newPet = new _crud.PetCreate('create');
-    //then push it to the array
-    petArray.push(newPet);
-    // checking the array
-    for (var i = 0; i < petArray.length; i++) {
-      if (petArray[i].shelter === shelterStatic) {
-        console.info('looks same');
-      } else {
-        // if something looks diferent then change it for every single element
-        petArray.forEach(function (el, i) {
-          petArray[i].shelter = shelterStatic;
-        });
-      }
-    }
-
-    console.log(petArray);
-  });
+	var petForm = document.getElementById('insertPet');
+	// listen to the form
+	petForm.addEventListener("submit", function (e) {
+		e.preventDefault();
+		var newPet = new _crud.PetCreate();
+		_crud.petArray.push(newPet);
+	});
 });
 
 },{"./core/crud":1}]},{},[3]);
