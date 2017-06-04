@@ -4,7 +4,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Crud = undefined;
+exports.PetCreate = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -16,39 +16,33 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Crud = exports.Crud = function (_Pet) {
-  _inherits(Crud, _Pet);
+var PetCreate = exports.PetCreate = function (_PetProfile) {
+  _inherits(PetCreate, _PetProfile);
 
-  function Crud() {
-    _classCallCheck(this, Crud);
+  function PetCreate(_method) {
+    _classCallCheck(this, PetCreate);
 
-    var _this = _possibleConstructorReturn(this, (Crud.__proto__ || Object.getPrototypeOf(Crud)).call(this));
+    var _this = _possibleConstructorReturn(this, (PetCreate.__proto__ || Object.getPrototypeOf(PetCreate)).call(this));
 
-    _this.container = document.getElementById('main');
+    _this.method = _method;
     _this.create();
+
     return _this;
   }
 
-  _createClass(Crud, [{
+  _createClass(PetCreate, [{
     key: 'create',
     value: function create() {
 
-      console.log('from create', this.name);
-      var template = '\n        <h1>' + this.name + '</h1>\n        <h1>' + this.age + '</h1>\n        <hr />\n      ';
+      // console.log(petList);
+      var template = '\n        <h1>' + this.name + '</h1>\n        <h1>' + this.age + '</h1>\n         <h1>' + this.shelter + '</h1>\n        <hr />\n      ';
 
-      // this.container.innerHtml(template);
-      this.container.insertAdjacentHTML('beforebegin', template);
+      document.getElementById('main').insertAdjacentHTML('beforebegin', template);
     }
-  }, {
-    key: 'delete',
-    value: function _delete() {}
-  }, {
-    key: 'update',
-    value: function update() {}
   }]);
 
-  return Crud;
-}(_petProfile.Pet);
+  return PetCreate;
+}(_petProfile.PetProfile);
 
 },{"./petProfile":2}],2:[function(require,module,exports){
 'use strict';
@@ -59,11 +53,12 @@ Object.defineProperty(exports, "__esModule", {
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Pet = exports.Pet = function Pet() {
-  _classCallCheck(this, Pet);
+var PetProfile = exports.PetProfile = function PetProfile() {
+  _classCallCheck(this, PetProfile);
 
   this.name = document.getElementById('name').value;
   this.age = document.getElementById('age').value;
+  this.shelter = document.getElementById('shelter').value;
 };
 
 },{}],3:[function(require,module,exports){
@@ -71,16 +66,37 @@ var Pet = exports.Pet = function Pet() {
 
 var _crud = require('./core/crud');
 
+var petArray = [];
+
+
 // waiting for the document to be ready
 window.addEventListener("load", function () {
 
-  // form
   var petForm = document.getElementById('insertPet');
 
+  // listen to the form
   petForm.addEventListener("submit", function (e) {
-    e.preventDefault();
 
-    var page = new _crud.Crud();
+    var shelterStatic = document.getElementById('shelter').value;
+
+    e.preventDefault();
+    // creating a new instance
+    var newPet = new _crud.PetCreate('create');
+    //then push it to the array
+    petArray.push(newPet);
+    // checking the array
+    for (var i = 0; i < petArray.length; i++) {
+      if (petArray[i].shelter === shelterStatic) {
+        console.info('looks same');
+      } else {
+        // if something looks diferent then change it for every single element
+        petArray.forEach(function (el, i) {
+          petArray[i].shelter = shelterStatic;
+        });
+      }
+    }
+
+    console.log(petArray);
   });
 });
 

@@ -1,30 +1,25 @@
-import {Pet} from './petProfile';
+import {PetProfile} from './petProfile';
 
-export class Crud extends Pet{
+export class PetCreate extends PetProfile{
 
-  constructor(){
+  constructor(_method){
     super();
-    this.container = document.getElementById('main');
+    this.method = _method;
     this.create();
+
   }
   create (){
 
-    console.log('from create', this.name);
+    // console.log(petList);
     let template = `
         <h1>${this.name}</h1>
         <h1>${this.age}</h1>
+         <h1>${this.shelter}</h1>
         <hr />
       `;
 
-    // this.container.innerHtml(template);
-    this.container.insertAdjacentHTML('beforebegin', template);
+    document.getElementById('main').insertAdjacentHTML('beforebegin', template);
   }
 
-  delete(){
 
-  }
-
-  update(){
-
-  }
 }
