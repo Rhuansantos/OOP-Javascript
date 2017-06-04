@@ -1,3 +1,6 @@
+.container-optional {
+  margin: 1%; }
+
 header {
   width: 100%;
   header: 100px;
@@ -10,11 +13,13 @@ header {
 #petList li {
   list-style-type: none; }
 
-#insertPet p label {
-  display: block; }
-#insertPet button, #insertPet input {
-  width: 100%; }
-#insertPet input {
-  padding: 10px; }
+#insertPet {
+  position: fixed; }
+  #insertPet p label {
+    display: block; }
+  #insertPet button, #insertPet input {
+    width: 400px; }
+  #insertPet input {
+    padding: 10px; }
 
 /*# sourceMappingURL=main.css.map */
