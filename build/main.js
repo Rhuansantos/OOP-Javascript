@@ -28,15 +28,16 @@ var PetCreate = exports.PetCreate = function (_PetProfile) {
 
     _this.petArray = petArray;
     _this.create();
+
+    console.log(_this.shelter);
+
     return _this;
   }
 
   _createClass(PetCreate, [{
     key: 'create',
     value: function create() {
-
-      var template = '\n        <h1>' + this.name + '</h1>\n        <h1>' + this.age + '</h1>\n         <h1>' + this.shelter + '</h1>\n        <hr />\n      ';
-
+      var petContainer = document.getElementById('petList');
       var shelterStatic = document.getElementById('shelter').value;
 
       // checking the array
@@ -51,9 +52,12 @@ var PetCreate = exports.PetCreate = function (_PetProfile) {
         }
       }
 
-      document.getElementById('main').insertAdjacentHTML('beforebegin', template);
+      this.petArray.forEach(function (el, i) {
 
-      console.log(petArray);
+        var template = '\n      <li data-key=' + i + '>\n           <h1>' + petArray[i].name + '</h1>\n           <h1>' + petArray[i].age + '</h1>\n           <h1>' + petArray[i].shelter + '</h1>\n          <hr />\n      </li>\n    ';
+
+        petContainer.insertAdjacentHTML('beforeend', template);
+      });
     }
   }]);
 
@@ -75,6 +79,8 @@ var PetProfile = exports.PetProfile = function PetProfile() {
   this.name = document.getElementById('name').value;
   this.age = document.getElementById('age').value;
   this.shelter = document.getElementById('shelter').value;
+
+  console.log('load petProfile');
 };
 
 },{}],3:[function(require,module,exports){
@@ -86,9 +92,14 @@ var _crud = require('./core/crud');
 window.addEventListener("load", function () {
 
 	var petForm = document.getElementById('insertPet');
+	var petContainer = document.getElementById('petList');
+	var petList = document.querySelectorAll('#petList li');
+	console.log(petList);
+
 	// listen to the form
-	petForm.addEventListener("submit", function (e) {
+	petForm.addEventListener('submit', function (e) {
 		e.preventDefault();
+		petContainer.innerHTML = '';
 		var newPet = new _crud.PetCreate();
 		_crud.petArray.push(newPet);
 	});

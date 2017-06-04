@@ -7,16 +7,12 @@ export class PetCreate extends PetProfile{
     super();
     this.petArray = petArray;
     this.create();
+
+    console.log(this.shelter);
+
   }
   create (){
-
-    let template = `
-        <h1>${this.name}</h1>
-        <h1>${this.age}</h1>
-         <h1>${this.shelter}</h1>
-        <hr />
-      `;
-  
+    let petContainer = document.getElementById('petList');
     let shelterStatic = document.getElementById('shelter').value;
 
     // checking the array
@@ -30,10 +26,22 @@ export class PetCreate extends PetProfile{
         });
       }
     }
-    
-    document.getElementById('main').insertAdjacentHTML('beforebegin', template);
 
-    console.log(petArray);
+    this.petArray.forEach( function(el, i) {
+
+    let template = `
+      <li data-key=${i}>
+           <h1>${petArray[i].name}</h1>
+           <h1>${petArray[i].age}</h1>
+           <h1>${petArray[i].shelter}</h1>
+          <hr />
+      </li>
+    `;
+
+      petContainer.insertAdjacentHTML('beforeend', template);
+
+    });
+
   }
 
 }

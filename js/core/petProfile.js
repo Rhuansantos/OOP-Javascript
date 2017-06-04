@@ -4,5 +4,7 @@ export class PetProfile{
     this.name = document.getElementById('name').value;
     this.age =  document.getElementById('age').value;
     this.shelter = document.getElementById('shelter').value;
+
+    console.log('load petProfile');
   }
 }
