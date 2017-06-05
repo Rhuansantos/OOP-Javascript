@@ -9,6 +9,8 @@ export class CreatePet extends Pet{
     this.petType = this.type.options[this.type.selectedIndex].value;
   }
   create (){
+    petArray.push(this);
+
     let petContainer = document.getElementById('petList');
     let shelterStatic = document.getElementById('shelter').value;
     // checking the array
@@ -20,22 +22,32 @@ export class CreatePet extends Pet{
          });
       }
     }
+    console.log(shelterStatic);
+    let tempAge = [];
     // print pets from array
+
     petArray.forEach( (el, i) => {
       // getting age avg from static method
-      let ageAvg = Util.avg(petArray[i].age, petArray.length); 
-      document.getElementById('ageAvg').innerHTML = ageAvg;
+      tempAge.push(el.age);
       let template = `
         <li data-key=${i}>
-           <h4>Name: ${petArray[i].name}</h4>
-           <h4>Age: ${petArray[i].age}</h4>
-           <h4>Type: ${petArray[i].petType}</h4>
-           <h4>Location: ${petArray[i].shelter}</h4>
+           <h4>Name: ${el.name}</h4>
+           <h4>Age: ${el.age}</h4>
+           <h4>Type: ${el.petType}</h4>
+           <h4>Location: ${el.shelter}</h4>
             <hr />
         </li>
       `;
       petContainer.insertAdjacentHTML('beforeend', template);
 
     });
+
+    let ageAvg = Util.avg(tempAge);
+    document.getElementById('ageAvg').innerHTML = ageAvg;
+
+
+
+    console.log(petArray);
+
   }
 }

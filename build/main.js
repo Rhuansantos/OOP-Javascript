@@ -36,6 +36,8 @@ var CreatePet = exports.CreatePet = function (_Pet) {
   _createClass(CreatePet, [{
     key: 'create',
     value: function create() {
+      petArray.push(this);
+
       var petContainer = document.getElementById('petList');
       var shelterStatic = document.getElementById('shelter').value;
       // checking the array
@@ -47,14 +49,21 @@ var CreatePet = exports.CreatePet = function (_Pet) {
           });
         }
       }
+      console.log(shelterStatic);
+      var tempAge = [];
       // print pets from array
+
       petArray.forEach(function (el, i) {
         // getting age avg from static method
-        var ageAvg = _util.Util.avg(petArray[i].age, petArray.length);
-        document.getElementById('ageAvg').innerHTML = ageAvg;
-        var template = '\n        <li data-key=' + i + '>\n           <h4>Name: ' + petArray[i].name + '</h4>\n           <h4>Age: ' + petArray[i].age + '</h4>\n           <h4>Type: ' + petArray[i].petType + '</h4>\n           <h4>Location: ' + petArray[i].shelter + '</h4>\n            <hr />\n        </li>\n      ';
+        tempAge.push(el.age);
+        var template = '\n        <li data-key=' + i + '>\n           <h4>Name: ' + el.name + '</h4>\n           <h4>Age: ' + el.age + '</h4>\n           <h4>Type: ' + el.petType + '</h4>\n           <h4>Location: ' + el.shelter + '</h4>\n            <hr />\n        </li>\n      ';
         petContainer.insertAdjacentHTML('beforeend', template);
       });
+
+      var ageAvg = _util.Util.avg(tempAge);
+      document.getElementById('ageAvg').innerHTML = ageAvg;
+
+      console.log(petArray);
     }
   }]);
 
@@ -133,12 +142,12 @@ var Util = exports.Util = function () {
 
 	_createClass(Util, null, [{
 		key: "avg",
-		value: function avg(_n, _l) {
+		value: function avg(_n) {
 			var total = 0;
-			for (var i = 0; i < _l; i++) {
-				total = +_n;
-			}
-			var avg = total / _l;
+			_n.forEach(function (_el) {
+				total = +_el;
+			});
+			var avg = total / _n.length;
 			return Math.round(avg);
 		}
 	}]);
@@ -162,7 +171,7 @@ window.addEventListener("load", function () {
 		e.preventDefault();
 		petContainer.innerHTML = '';
 		var newPet = new _crud.CreatePet();
-		_crud.petArray.push(newPet);
+		// petArray.push(newPet);console.log('from the home', petArray);
 	});
 });
 

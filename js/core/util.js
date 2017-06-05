@@ -4,12 +4,12 @@ export class Util{
 	}
 	// _n = total
 	// _l = array length
-	static avg(_n, _l){
+	static avg(_n){
 		let total = 0;
-		for(let i = 0; i < _l; i++){
-			total =+ _n;
-		}
-		let avg = total / _l;
+		_n.forEach(_el => {
+				total =+ _el;
+		});
+		let avg = total / _n.length;
 		return Math.round(avg);
 	}
 }

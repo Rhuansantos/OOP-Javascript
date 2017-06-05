@@ -11,7 +11,7 @@ window.addEventListener("load", () => {
 		e.preventDefault();
 		petContainer.innerHTML = '';
 		let newPet = new pet();
-    	petArray.push(newPet);
+    // petArray.push(newPet);console.log('from the home', petArray);
 	});
 
 });
