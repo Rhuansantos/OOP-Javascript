@@ -6,7 +6,8 @@ export class Pet extends Shelter{
   	super();
     this.name = document.getElementById('name').value;
     this.age =  document.getElementById('age').value;
-    this.shelterLocation = document.getElementById('shelter').value;
+    this.type = document.getElementById('type');
+    this.shelterLocation = document.getElementById('shelter').value; ////overide from Shelter
     
   }
 }

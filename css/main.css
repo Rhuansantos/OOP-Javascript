@@ -21,7 +21,10 @@ header {
   position: fixed; }
   #insertPet p label {
     display: block; }
-  #insertPet button, #insertPet input {
+  #insertPet button, #insertPet input, #insertPet select {
     width: 400px; }
+  #insertPet select {
+    -webkit-appearance: none;
+    padding: 10px; }
   #insertPet input {
     padding: 10px; }

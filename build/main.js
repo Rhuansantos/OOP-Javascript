@@ -29,6 +29,7 @@ var CreatePet = exports.CreatePet = function (_Pet) {
     var _this = _possibleConstructorReturn(this, (CreatePet.__proto__ || Object.getPrototypeOf(CreatePet)).call(this));
 
     _this.create();
+    _this.petType = _this.type.options[_this.type.selectedIndex].value;
     return _this;
   }
 
@@ -48,11 +49,14 @@ var CreatePet = exports.CreatePet = function (_Pet) {
       }
       // print pets from array
       petArray.forEach(function (el, i) {
+        // getting age avg from static method
         var ageAvg = _util.Util.avg(petArray[i].age, petArray.length);
         document.getElementById('ageAvg').innerHTML = ageAvg;
-        var template = '\n        <li data-key=' + i + '>\n           <h4>' + petArray[i].name + '</h4>\n           <h4>' + petArray[i].age + '</h4>\n           <h4>' + petArray[i].shelter + '</h4>\n            <hr />\n        </li>\n      ';
+        var template = '\n        <li data-key=' + i + '>\n           <h4>' + petArray[i].name + '</h4>\n           <h4>' + petArray[i].age + '</h4>\n           <h4>' + petArray[i].petType + '</h4>\n           <h4>' + petArray[i].shelter + '</h4>\n            <hr />\n        </li>\n      ';
         petContainer.insertAdjacentHTML('beforeend', template);
       });
+
+      console.log(petArray);
     }
   }]);
 
@@ -85,7 +89,8 @@ var Pet = exports.Pet = function (_Shelter) {
 
     _this.name = document.getElementById('name').value;
     _this.age = document.getElementById('age').value;
-    _this.shelterLocation = document.getElementById('shelter').value;
+    _this.type = document.getElementById('type');
+    _this.shelterLocation = document.getElementById('shelter').value; ////overide from Shelter
 
     return _this;
   }

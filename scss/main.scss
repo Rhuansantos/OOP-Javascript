@@ -30,8 +30,13 @@ header{
 		}
 	}
 
-	button, input{
+	button, input, select{
 		width: 400px;
+	}
+	select{
+		-webkit-appearance: none;
+		// height: 30px;
+		padding: 10px;
 	}
 	input{
 
