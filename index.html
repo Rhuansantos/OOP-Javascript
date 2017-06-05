@@ -1,5 +1,6 @@
 <!-- 
 Student: Rhuan Souza
+Class: WDD312-L 00
 -->
 
 <!DOCTYPE html>
@@ -13,25 +14,29 @@ Student: Rhuan Souza
 <body>
 
 <header>
-	<h1>PetList</h1>
+	<h1>Shelter Dashboard</h1>
 </header>
 
 
 <div class="container-optional">
 
-	<div id="summary">
-		<h4>Pet Averge Age: <span id="ageAvg"></span></h4>
-	</div>
 	<div class="row">
 
-	<section class="col-xs-4">
+	<section  class="col-xs-4">
+		<div id="summary">
+			<h4>Pet Averge Age: <span id="ageAvg"></span></h4>
+		</div>
 		<form id="insertPet" action="">
+			<p>
+				<h2>Add a new pet</h2>
+			</p>
 			<p>
 				<input id="name" type="text" placeholder="Pet Name">
 			</p>
 			<p>
 				<input id="age" type="number" placeholder="Pet Age" min="0">
 			</p>
+			<!-- static method -->
 			<p>
 				<label>Static Method</label>
 				<input id="shelter" type="text" value="Orlando-Fl">

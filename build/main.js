@@ -4,7 +4,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.PetCreate = exports.petArray = undefined;
+exports.CreatePet = exports.petArray = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
@@ -20,83 +20,103 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var petArray = exports.petArray = [];
 
-var PetCreate = exports.PetCreate = function (_PetProfile) {
-  _inherits(PetCreate, _PetProfile);
+var CreatePet = exports.CreatePet = function (_Pet) {
+  _inherits(CreatePet, _Pet);
 
-  function PetCreate() {
-    _classCallCheck(this, PetCreate);
+  function CreatePet() {
+    _classCallCheck(this, CreatePet);
 
-    var _this = _possibleConstructorReturn(this, (PetCreate.__proto__ || Object.getPrototypeOf(PetCreate)).call(this));
+    var _this = _possibleConstructorReturn(this, (CreatePet.__proto__ || Object.getPrototypeOf(CreatePet)).call(this));
 
     _this.create();
-
     return _this;
   }
 
-  _createClass(PetCreate, [{
+  _createClass(CreatePet, [{
     key: 'create',
     value: function create() {
       var petContainer = document.getElementById('petList');
       var shelterStatic = document.getElementById('shelter').value;
-
       // checking the array
       for (var i = 0; i < petArray.length; i++) {
-        if (petArray[i].shelter === shelterStatic) {
-          console.log('looks same');
-        } else {
-          // if something looks diferent then change it for every single element
+        // if something looks diferent then change it for every single element
+        if (petArray[i].shelter != shelterStatic) {
           petArray.forEach(function (el, i) {
             petArray[i].shelter = shelterStatic;
           });
         }
       }
-
+      // print pets from array
       petArray.forEach(function (el, i) {
-
         var ageAvg = _util.Util.avg(petArray[i].age, petArray.length);
-        console.log(ageAvg);
         document.getElementById('ageAvg').innerHTML = ageAvg;
-
-        var template = '\n        <li data-key=' + i + '>\n             <h1>' + petArray[i].name + '</h1>\n             <h1>' + petArray[i].age + '</h1>\n             <h1>' + petArray[i].shelter + '</h1>\n            <hr />\n        </li>\n      ';
-
+        var template = '\n        <li data-key=' + i + '>\n           <h4>' + petArray[i].name + '</h4>\n           <h4>' + petArray[i].age + '</h4>\n           <h4>' + petArray[i].shelter + '</h4>\n            <hr />\n        </li>\n      ';
         petContainer.insertAdjacentHTML('beforeend', template);
       });
     }
   }]);
 
-  return PetCreate;
-}(_petProfile.PetProfile);
+  return CreatePet;
+}(_petProfile.Pet);
 
-},{"./petProfile":2,"./util":3}],2:[function(require,module,exports){
+},{"./petProfile":2,"./util":4}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Pet = undefined;
+
+var _shelter = require('./shelter');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PetProfile = exports.PetProfile = function PetProfile() {
-  _classCallCheck(this, PetProfile);
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  this.name = document.getElementById('name').value;
-  this.age = document.getElementById('age').value;
-  this.shelter = document.getElementById('shelter').value;
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  console.log('load petProfile');
-};
+var Pet = exports.Pet = function (_Shelter) {
+  _inherits(Pet, _Shelter);
 
-},{}],3:[function(require,module,exports){
-'use strict';
+  function Pet() {
+    _classCallCheck(this, Pet);
+
+    var _this = _possibleConstructorReturn(this, (Pet.__proto__ || Object.getPrototypeOf(Pet)).call(this));
+
+    _this.name = document.getElementById('name').value;
+    _this.age = document.getElementById('age').value;
+    _this.shelterLocation = document.getElementById('shelter').value;
+
+    return _this;
+  }
+
+  return Pet;
+}(_shelter.Shelter);
+
+},{"./shelter":3}],3:[function(require,module,exports){
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
 	value: true
 });
-exports.Util = undefined;
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Shelter = exports.Shelter = function Shelter() {
+	_classCallCheck(this, Shelter);
+
+	this.shelterId = 0;
+	this.shelterLocation = "Orlando-Fl";
+};
+
+},{}],4:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _crud = require('./crud');
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -105,11 +125,11 @@ var Util = exports.Util = function () {
 		_classCallCheck(this, Util);
 	}
 	// _n = total
-	// _l = length
+	// _l = array length
 
 
 	_createClass(Util, null, [{
-		key: 'avg',
+		key: "avg",
 		value: function avg(_n, _l) {
 			var total = 0;
 			for (var i = 0; i < _l; i++) {
@@ -123,7 +143,7 @@ var Util = exports.Util = function () {
 	return Util;
 }();
 
-},{"./crud":1}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 'use strict';
 
 var _crud = require('./core/crud');
@@ -134,15 +154,14 @@ window.addEventListener("load", function () {
 	var petForm = document.getElementById('insertPet');
 	var petContainer = document.getElementById('petList');
 	var petList = document.querySelectorAll('#petList li');
-	console.log(petList);
 
 	// listen to the form
 	petForm.addEventListener('submit', function (e) {
 		e.preventDefault();
 		petContainer.innerHTML = '';
-		var newPet = new _crud.PetCreate();
+		var newPet = new _crud.CreatePet();
 		_crud.petArray.push(newPet);
 	});
 });
 
-},{"./core/crud":1}]},{},[4]);
+},{"./core/crud":1}]},{},[5]);

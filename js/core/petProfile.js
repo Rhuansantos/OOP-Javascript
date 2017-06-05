@@ -1,10 +1,12 @@
-export class PetProfile{
+import {Shelter} from './shelter';
+
+export class Pet extends Shelter{
 
   constructor(){
+  	super();
     this.name = document.getElementById('name').value;
     this.age =  document.getElementById('age').value;
-    this.shelter = document.getElementById('shelter').value;
-
-    console.log('load petProfile');
+    this.shelterLocation = document.getElementById('shelter').value;
+    
   }
 }
