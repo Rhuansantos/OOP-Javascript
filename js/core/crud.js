@@ -1,4 +1,5 @@
 import {PetProfile} from './petProfile';
+import {Util} from './util';
 export let petArray = [];
 
 export class PetCreate extends PetProfile{
@@ -26,14 +27,18 @@ export class PetCreate extends PetProfile{
 
     petArray.forEach( function(el, i) {
 
-    let template = `
-      <li data-key=${i}>
-           <h1>${petArray[i].name}</h1>
-           <h1>${petArray[i].age}</h1>
-           <h1>${petArray[i].shelter}</h1>
-          <hr />
-      </li>
-    `;
+      let ageAvg = Util.avg(petArray[i].age, petArray.length);
+      console.log(ageAvg);
+      document.getElementById('ageAvg').innerHTML = ageAvg;
+
+      let template = `
+        <li data-key=${i}>
+             <h1>${petArray[i].name}</h1>
+             <h1>${petArray[i].age}</h1>
+             <h1>${petArray[i].shelter}</h1>
+            <hr />
+        </li>
+      `;
 
       petContainer.insertAdjacentHTML('beforeend', template);
 

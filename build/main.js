@@ -10,6 +10,8 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _petProfile = require('./petProfile');
 
+var _util = require('./util');
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -51,7 +53,11 @@ var PetCreate = exports.PetCreate = function (_PetProfile) {
 
       petArray.forEach(function (el, i) {
 
-        var template = '\n      <li data-key=' + i + '>\n           <h1>' + petArray[i].name + '</h1>\n           <h1>' + petArray[i].age + '</h1>\n           <h1>' + petArray[i].shelter + '</h1>\n          <hr />\n      </li>\n    ';
+        var ageAvg = _util.Util.avg(petArray[i].age, petArray.length);
+        console.log(ageAvg);
+        document.getElementById('ageAvg').innerHTML = ageAvg;
+
+        var template = '\n        <li data-key=' + i + '>\n             <h1>' + petArray[i].name + '</h1>\n             <h1>' + petArray[i].age + '</h1>\n             <h1>' + petArray[i].shelter + '</h1>\n            <hr />\n        </li>\n      ';
 
         petContainer.insertAdjacentHTML('beforeend', template);
       });
@@ -61,7 +67,7 @@ var PetCreate = exports.PetCreate = function (_PetProfile) {
   return PetCreate;
 }(_petProfile.PetProfile);
 
-},{"./petProfile":2}],2:[function(require,module,exports){
+},{"./petProfile":2,"./util":3}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -83,6 +89,43 @@ var PetProfile = exports.PetProfile = function PetProfile() {
 },{}],3:[function(require,module,exports){
 'use strict';
 
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.Util = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _crud = require('./crud');
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Util = exports.Util = function () {
+	function Util() {
+		_classCallCheck(this, Util);
+	}
+	// _n = total
+	// _l = length
+
+
+	_createClass(Util, null, [{
+		key: 'avg',
+		value: function avg(_n, _l) {
+			var total = 0;
+			for (var i = 0; i < _l; i++) {
+				total = +_n;
+			}
+			var avg = total / _l;
+			return Math.round(avg);
+		}
+	}]);
+
+	return Util;
+}();
+
+},{"./crud":1}],4:[function(require,module,exports){
+'use strict';
+
 var _crud = require('./core/crud');
 
 // waiting for the document to be ready
@@ -102,4 +145,4 @@ window.addEventListener("load", function () {
 	});
 });
 
-},{"./core/crud":1}]},{},[3]);
+},{"./core/crud":1}]},{},[4]);
