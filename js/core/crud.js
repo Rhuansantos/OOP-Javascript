@@ -15,29 +15,27 @@ export class CreatePet extends Pet{
     for (let i = 0; i < petArray.length; i ++){
       // if something looks diferent then change it for every single element
       if(petArray[i].shelter != shelterStatic){
-        petArray.forEach( function(el, i) {
+        petArray.forEach( (el, i) => {
             petArray[i].shelter = shelterStatic;
          });
       }
     }
     // print pets from array
-    petArray.forEach( function(el, i) {
+    petArray.forEach( (el, i) => {
       // getting age avg from static method
       let ageAvg = Util.avg(petArray[i].age, petArray.length); 
       document.getElementById('ageAvg').innerHTML = ageAvg;
       let template = `
         <li data-key=${i}>
-           <h4>${petArray[i].name}</h4>
-           <h4>${petArray[i].age}</h4>
-           <h4>${petArray[i].petType}</h4>
-           <h4>${petArray[i].shelter}</h4>
+           <h4>Name: ${petArray[i].name}</h4>
+           <h4>Age: ${petArray[i].age}</h4>
+           <h4>Type: ${petArray[i].petType}</h4>
+           <h4>Location: ${petArray[i].shelter}</h4>
             <hr />
         </li>
       `;
       petContainer.insertAdjacentHTML('beforeend', template);
 
     });
-
-    console.log(petArray);
   }
 }

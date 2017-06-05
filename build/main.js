@@ -52,11 +52,9 @@ var CreatePet = exports.CreatePet = function (_Pet) {
         // getting age avg from static method
         var ageAvg = _util.Util.avg(petArray[i].age, petArray.length);
         document.getElementById('ageAvg').innerHTML = ageAvg;
-        var template = '\n        <li data-key=' + i + '>\n           <h4>' + petArray[i].name + '</h4>\n           <h4>' + petArray[i].age + '</h4>\n           <h4>' + petArray[i].petType + '</h4>\n           <h4>' + petArray[i].shelter + '</h4>\n            <hr />\n        </li>\n      ';
+        var template = '\n        <li data-key=' + i + '>\n           <h4>Name: ' + petArray[i].name + '</h4>\n           <h4>Age: ' + petArray[i].age + '</h4>\n           <h4>Type: ' + petArray[i].petType + '</h4>\n           <h4>Location: ' + petArray[i].shelter + '</h4>\n            <hr />\n        </li>\n      ';
         petContainer.insertAdjacentHTML('beforeend', template);
       });
-
-      console.log(petArray);
     }
   }]);
 
@@ -158,7 +156,6 @@ window.addEventListener("load", function () {
 
 	var petForm = document.getElementById('insertPet');
 	var petContainer = document.getElementById('petList');
-	var petList = document.querySelectorAll('#petList li');
 
 	// listen to the form
 	petForm.addEventListener('submit', function (e) {

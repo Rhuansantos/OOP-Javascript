@@ -5,14 +5,13 @@ window.addEventListener("load", () => {
 
 	let petForm = document.getElementById('insertPet');
 	let petContainer = document.getElementById('petList');
-	let petList = document.querySelectorAll('#petList li');
 
 	// listen to the form
 	petForm.addEventListener('submit', (e) => {
 		e.preventDefault();
 		petContainer.innerHTML = '';
 		let newPet = new pet();
-		petArray.push(newPet);
+    	petArray.push(newPet);
 	});
 
 });
