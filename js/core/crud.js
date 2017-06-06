@@ -5,12 +5,11 @@ export let petArray = [];
 export class CreatePet extends Pet{
   constructor(){
     super();
-    this.create();
     this.petType = this.type.options[this.type.selectedIndex].value;
+    this.create();
   }
   create (){
     petArray.push(this);
-
     let petContainer = document.getElementById('petList');
     let shelterStatic = document.getElementById('shelter').value;
     // checking the array
@@ -25,10 +24,9 @@ export class CreatePet extends Pet{
     console.log(shelterStatic);
     let tempAge = [];
     // print pets from array
-
     petArray.forEach( (el, i) => {
       // getting age avg from static method
-      tempAge.push(el.age);
+      tempAge.push(Number(el.age));
       let template = `
         <li data-key=${i}>
            <h4>Name: ${el.name}</h4>
@@ -41,13 +39,7 @@ export class CreatePet extends Pet{
       petContainer.insertAdjacentHTML('beforeend', template);
 
     });
-
     let ageAvg = Util.avg(tempAge);
     document.getElementById('ageAvg').innerHTML = ageAvg;
-
-
-
-    console.log(petArray);
-
   }
 }

@@ -28,8 +28,8 @@ var CreatePet = exports.CreatePet = function (_Pet) {
 
     var _this = _possibleConstructorReturn(this, (CreatePet.__proto__ || Object.getPrototypeOf(CreatePet)).call(this));
 
-    _this.create();
     _this.petType = _this.type.options[_this.type.selectedIndex].value;
+    _this.create();
     return _this;
   }
 
@@ -37,7 +37,6 @@ var CreatePet = exports.CreatePet = function (_Pet) {
     key: 'create',
     value: function create() {
       petArray.push(this);
-
       var petContainer = document.getElementById('petList');
       var shelterStatic = document.getElementById('shelter').value;
       // checking the array
@@ -52,18 +51,14 @@ var CreatePet = exports.CreatePet = function (_Pet) {
       console.log(shelterStatic);
       var tempAge = [];
       // print pets from array
-
       petArray.forEach(function (el, i) {
         // getting age avg from static method
-        tempAge.push(el.age);
+        tempAge.push(Number(el.age));
         var template = '\n        <li data-key=' + i + '>\n           <h4>Name: ' + el.name + '</h4>\n           <h4>Age: ' + el.age + '</h4>\n           <h4>Type: ' + el.petType + '</h4>\n           <h4>Location: ' + el.shelter + '</h4>\n            <hr />\n        </li>\n      ';
         petContainer.insertAdjacentHTML('beforeend', template);
       });
-
       var ageAvg = _util.Util.avg(tempAge);
       document.getElementById('ageAvg').innerHTML = ageAvg;
-
-      console.log(petArray);
     }
   }]);
 
@@ -136,18 +131,16 @@ var Util = exports.Util = function () {
 	function Util() {
 		_classCallCheck(this, Util);
 	}
-	// _n = total
-	// _l = array length
-
 
 	_createClass(Util, null, [{
 		key: "avg",
 		value: function avg(_n) {
 			var total = 0;
+			var avg = 0;
 			_n.forEach(function (_el) {
-				total = +_el;
+				total += _el;
+				avg = total / _n.length;
 			});
-			var avg = total / _n.length;
 			return Math.round(avg);
 		}
 	}]);
@@ -171,7 +164,6 @@ window.addEventListener("load", function () {
 		e.preventDefault();
 		petContainer.innerHTML = '';
 		var newPet = new _crud.CreatePet();
-		// petArray.push(newPet);console.log('from the home', petArray);
 	});
 });
 

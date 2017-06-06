@@ -1,15 +1,13 @@
 export class Util{
 	constructor(){
-
 	}
-	// _n = total
-	// _l = array length
 	static avg(_n){
 		let total = 0;
+		let avg = 0;
 		_n.forEach(_el => {
-				total =+ _el;
+			total += _el;
+			avg = total/_n.length;
 		});
-		let avg = total / _n.length;
 		return Math.round(avg);
 	}
 }
